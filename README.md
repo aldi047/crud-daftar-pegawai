@@ -1,6 +1,7 @@
 # crud-daftar-pegawai
-https://clouddevs.com/jquery/local-storage/
 https://bantikyan.github.io/icheck-bootstrap/
+
+Upload Foto Jangan Lupa (Terakhir saja)
 
 Halaman Employee
 Hanya ada 1 tab saja dengan isi:

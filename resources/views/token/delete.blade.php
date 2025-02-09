@@ -6,7 +6,7 @@
             var token = localStorage.getItem("crud_employee_token");
             $.ajax({
                 type:"GET",
-                url:location.origin + "/removeToken",
+                url:location.origin + "/api/removeToken",
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader('Authorization', token);
                 },
