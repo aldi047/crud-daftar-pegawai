@@ -15,14 +15,12 @@ Route::post('/issueToken', [AuthController::class, 'issueToken']);
 
 Route::middleware('auth:sanctum')->group(static function () {
     Route::get('/removeToken', [AuthController::class, 'removeToken']);
-    Route::get('/employeeDetail', [EmployeeController::class, 'getAllEmployeeDetail']);
-    Route::get('/personalBiodata', [EmployeeController::class, 'getAllPersonalBiodata']);
 
-    Route::get('/employeeDetail', [EmployeeController::class, 'detail']);
-    Route::get('/employeeDetail/{id}', [EmployeeController::class, 'detail']);
-    Route::post('/employeeDetail', [EmployeeController::class, 'addEmployee']);
-    Route::match(['post', 'put'], '/employeeDetail/{id}', [EmployeeController::class, 'updateEmployee']);
-    Route::delete('/employeeDetail', [EmployeeController::class, 'delete']);
+    Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
+    Route::get('/employee/{id}', [EmployeeController::class, 'detail']);
+    Route::post('/employee', [EmployeeController::class, 'addEmployee']);
+    Route::match(['post', 'put'], '/employee/{id}', [EmployeeController::class, 'updateEmployee']);
+    Route::delete('/employee', [EmployeeController::class, 'delete']);
 
     Route::get('/personalBio', [EmployeeController::class, 'detail']);
     Route::get('/personalBio/{id}', [EmployeeController::class, 'detail']);

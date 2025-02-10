@@ -1,6 +1,7 @@
 # crud-daftar-pegawai
 https://bantikyan.github.io/icheck-bootstrap/
 
+Relationshipnya belum di model
 Upload Foto Jangan Lupa (Terakhir saja)
 
 Halaman Employee
