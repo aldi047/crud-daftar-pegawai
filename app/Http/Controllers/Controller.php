@@ -42,12 +42,9 @@ class Controller extends BaseController
             $originalExtension = $file->getClientOriginalExtension();
             $filename = "{$date}_profile.{$originalExtension}";
 
-            $path = $file->storeAs($folder, $filename, 'local');
+            $path = $file->storeAs($folder, $filename, 'public');
 
-            return [
-                'path' => route('getFile', ['path' => $path]),
-                'file_name' => $filename
-            ];
+            return url('/') . "/storage/{$path}";
         }
         return '';
     }

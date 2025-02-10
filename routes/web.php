@@ -12,8 +12,13 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/login', [HomeController::class, 'login'])->name('login');
-Route::get('/register', [HomeController::class, 'register'])->name('register');
+Route::get('/login', [HomeController::class, 'login']);
+Route::get('/register', [HomeController::class, 'register']);
+
+Route::get('/profile', [HomeController::class, 'profile']);
+Route::get('/profile/edit/{id}', [HomeController::class, 'edit'])->name('profiles.edit');
+Route::get('profile/update/{id}', [HomeController::class, 'update'])->name('profiles.update');
+
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);

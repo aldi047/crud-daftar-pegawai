@@ -9,4 +9,4 @@
     <a class="btn btn-primary" href="/login" role="button">Klik di sini untuk login</a>
 </div>
 @stop --}}
-@extends('adminlte::auth.register')
+@extends('adminlte::auth.login')

@@ -42,12 +42,21 @@ class HomeController extends Controller
         return view('auth.register');
     }
 
+    public function profile()
+    {
+        return view('employee.profile.index');
+    }
+
+    public function edit()
+    {
+        return view('employee.profile.edit');
+    }
 
     public function getFile(Request $request) {
         $fullPath = $request->get('path');
 
-        if (Storage::disk('local')->exists($fullPath)) {
-            return response()->file(storage_path("app/private/{$fullPath}"));
+        if (Storage::disk('public')->exists($fullPath)) {
+            return response()->file(storage_path("app/public/{$fullPath}"));
         }
 
         return response(null, 400);

@@ -1,5 +1,5 @@
 <li class="nav-item">
-    <a href="/profiles" class="nav-link {{ request()->is('user*') ? 'active' : '' }}">
+    <a href="/profile" class="nav-link {{ request()->is('profile*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-user"></i>
         <p class="text-nowrap">
             Users

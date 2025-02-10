@@ -14,7 +14,7 @@
 @section('auth_header', __('adminlte::adminlte.register_message'))
 
 @section('auth_body')
-    <form action="{{ $register_url }}" method="post">
+    <form action="{{ $register_url }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         {{-- Name field --}}
@@ -73,17 +73,8 @@
 
         {{-- Photo field --}}
         <div class="input-group mb-3">
-            <div>
-                <label>Photo Profile</label>
-            </div>
-            <input type="file" name="photo"
-                   class="form-control p-1 @error('photo') is-invalid @enderror">
-
-            @error('photo')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+            <label class="font-weight-bold pt-2 px-2">Photo :</label>
+            <input type="file" class="form-control p-1" name="photo">
         </div>
 
         {{-- Register button --}}
