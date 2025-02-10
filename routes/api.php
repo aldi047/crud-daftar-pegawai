@@ -16,6 +16,8 @@ Route::post('/issueToken', [AuthController::class, 'issueToken']);
 Route::middleware('auth:sanctum')->group(static function () {
     Route::get('/removeToken', [AuthController::class, 'removeToken']);
 
+    Route::get('/files', [HomeController::class, 'getFile'])->name('getFile');
+
     Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
     Route::get('/employee/{id}', [EmployeeController::class, 'detail']);
     Route::post('/employee', [EmployeeController::class, 'addEmployee']);

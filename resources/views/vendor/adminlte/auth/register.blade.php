@@ -71,19 +71,15 @@
             @enderror
         </div>
 
-        {{-- Confirm password field --}}
+        {{-- Photo field --}}
         <div class="input-group mb-3">
-            <input type="password" name="password_confirmation"
-                   class="form-control @error('password_confirmation') is-invalid @enderror"
-                   placeholder="{{ __('adminlte::adminlte.retype_password') }}">
-
-            <div class="input-group-append">
-                <div class="input-group-text">
-                    <span class="fas fa-lock {{ config('adminlte.classes_auth_icon', '') }}"></span>
-                </div>
+            <div>
+                <label>Photo Profile</label>
             </div>
+            <input type="file" name="photo"
+                   class="form-control p-1 @error('photo') is-invalid @enderror">
 
-            @error('password_confirmation')
+            @error('photo')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -98,6 +94,27 @@
 
     </form>
 @stop
+
+@section('adminlte_css')
+    <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+@stop
+
+@section('adminlte_js')
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            toastr.options.timeOut = 4000;
+            @if (session()->has('success'))
+                toastr.success("{{ Session::get('success') }}", 'BERHASIL');
+            @elseif (session()->has('info'))
+                toastr.info("{{ Session::get('info') }}", 'INFORMASI');
+            @elseif (session()->has('error'))
+                toastr.error("{{ Session::get('error') }}", 'GAGAL');
+            @endif
+        });
+    </script>
+@stop
+
 
 @section('auth_footer')
     <p class="my-0">

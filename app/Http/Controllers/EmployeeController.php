@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\EmployeeDetail;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Models\EmployeeDetail;
 
 class EmployeeController extends Controller
 {

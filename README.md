@@ -1,5 +1,8 @@
 # crud-daftar-pegawai
+https://jeroennoten.github.io/Laravel-AdminLTE/
 https://bantikyan.github.io/icheck-bootstrap/
+https://stackoverflow.com/questions/10520899/form-action-with-javascript
+https://ui-avatars.com/
 
 Relationshipnya belum di model
 Upload Foto Jangan Lupa (Terakhir saja)

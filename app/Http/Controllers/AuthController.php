@@ -17,7 +17,7 @@ class AuthController extends Controller
                 'email' => 'required',
                 'password' => 'required',
             ]);
-            if ($validator->fails()) return $this->validationFail($validator);
+            if ($validator->fails()) return back()->withErrors($validator->errors());
 
             if (!Auth::attempt($request->only('email', 'password'))) {
                 return back()->with('error', 'Email atau kata sandi salah');
@@ -41,12 +41,6 @@ class AuthController extends Controller
             ]);
             if ($validator->fails()) return $this->validationFail($validator);
 
-            if (!Auth::attempt($request->only('email', 'password'))) {
-                return $this->returnJson(
-                    null, 401,
-                    message: 'Email atau kata sandi salah'
-                );
-            }
             $user = User::where('email', $request['email'])->firstOrFail();
 
             $token = $user->createToken('auth_token')->plainTextToken;
@@ -64,8 +58,39 @@ class AuthController extends Controller
         }
     }
 
+    public function register(Request $request)
+    {
+        try{
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+                'photo' => 'nullable'
+            ]);
+            if ($validator->fails()) return back()->withErrors($validator->errors());
+
+            $data = $request->all();
+            if ($request->hasFile('photo')){
+                $path = $this->processFileName($request->photo_path);
+                $data['photo_path'] = $path;
+            }
+
+            $user = User::create($data);
+
+            Auth::loginUsingId($user->id);
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+            return view('token.save', compact('token'));
+
+        } catch(\Exception $exception){
+            return back()->with('error', $exception->getMessage());
+        }
+    }
+
     public function logout(Request $request)
     {
+        Auth::logout();
+        $request->session()->invalidate();
         return view('token.delete');
     }
 
