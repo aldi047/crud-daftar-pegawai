@@ -8,8 +8,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth::routes();
-
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/login', [HomeController::class, 'login']);
