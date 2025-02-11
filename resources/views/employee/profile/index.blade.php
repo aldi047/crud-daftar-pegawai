@@ -13,12 +13,12 @@
         <div class="form-group">
             <label class="font-weight-bold">Name</label>
             <input type="text" class="form-control"
-                name="nama" value="{{ Auth::user()->name }}" disabled>
+                value="{{ Auth::user()->name }}" disabled>
         </div>
         <div class="form-group">
             <label class="font-weight-bold">Email</label>
             <input type="text" class="form-control"
-                name="alamat" value="{{ Auth::user()->email }}" disabled>
+                value="{{ Auth::user()->email }}" disabled>
         </div>
         <div class="form-group">
             <label class="font-weight-bold">Photo</label>

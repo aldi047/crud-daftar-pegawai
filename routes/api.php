@@ -23,15 +23,15 @@ Route::middleware('auth:sanctum')->group(static function () {
 
     Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
     Route::get('/employee/{id}', [EmployeeController::class, 'detail']);
-    Route::post('/employee', [EmployeeController::class, 'addEmployee']);
-    Route::match(['post', 'put'], '/employee/{id}', [EmployeeController::class, 'updateEmployee']);
+    Route::post('/employeeDetail', [EmployeeController::class, 'addEmployeeDetail']);
+    Route::match(['post', 'put'], '/employee/{id}/edit', [EmployeeController::class, 'updateEmployeeDetail']);
     Route::delete('/employee', [EmployeeController::class, 'delete']);
 
-    Route::get('/personalBio', [EmployeeController::class, 'detail']);
-    Route::get('/personalBio/{id}', [EmployeeController::class, 'detail']);
-    Route::post('/personalBio', [EmployeeController::class, 'addBio']);
-    Route::match(['post', 'put'], '/personalBio/{id}', [EmployeeController::class, 'updateBio']);
-    Route::delete('/personalBio', [EmployeeController::class, 'delete']);
+    // Route::get('/personalBio', [EmployeeController::class, 'detail']);
+    // Route::get('/personalBio/{id}', [EmployeeController::class, 'detail']);
+    // Route::post('/personalBio', [EmployeeController::class, 'addBio']);
+    // Route::match(['post', 'put'], '/personalBio/{id}', [EmployeeController::class, 'updateBio']);
+    // Route::delete('/personalBio', [EmployeeController::class, 'delete']);
 
     Route::get('/getAllEmployee', [HomeController::class, 'employees']);
 

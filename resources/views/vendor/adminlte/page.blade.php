@@ -4,6 +4,7 @@
 @inject('preloaderHelper', 'JeroenNoten\LaravelAdminLte\Helpers\PreloaderHelper')
 
 @section('adminlte_css')
+<link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
     @stack('css')
     @yield('css')
 @stop

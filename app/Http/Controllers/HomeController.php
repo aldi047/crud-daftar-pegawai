@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
@@ -32,9 +35,25 @@ class HomeController extends Controller
         return view('employee.profile.index');
     }
 
-    public function edit()
+    public function editProfile()
     {
         return view('employee.profile.edit');
+    }
+
+    public function detail()
+    {
+        $hasDetail = Auth::user()->employeeDetail ?? null;
+        return view('employee.detail.index', compact('hasDetail'));
+    }
+
+    public function addDetail()
+    {
+        return view('employee.detail.create');
+    }
+
+    public function editDetail()
+    {
+        return view('employee.detail.edit');
     }
 
     public function getFile(Request $request) {
@@ -45,5 +64,22 @@ class HomeController extends Controller
         }
 
         return response(null, 400);
+    }
+
+    public function redirectWith(Request $request): RedirectResponse
+    {
+        try{
+            $route = $request->get('route') ?? '/';
+            $type = $request->get('type') ?? 'success';
+            $msg = $request->get('msg') ?? 'BERHASIL';
+
+            if (Route::has($route)) {
+                return redirect()->route($route)->with($type, $msg);
+            } else {
+                return back()->with('error', 'Route tidak ditemukan');
+            }
+        } catch(\Exception $exception){
+            return back()->with('info', 'Terjadi Kesalahan');
+        }
     }
 }
