@@ -7,6 +7,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class Controller extends BaseController
@@ -33,7 +34,7 @@ class Controller extends BaseController
         );
     }
 
-    protected function processFileName($file, $folder = 'profile') {
+    protected function uploadFile($file, $folder = 'profile') {
         if (!empty($file) && $file instanceof UploadedFile) {
             $date = Carbon::now()->format('YmdHisu') . Str::random(6);
             $originalExtension = $file->getClientOriginalExtension();
@@ -41,8 +42,17 @@ class Controller extends BaseController
 
             $path = $file->storeAs($folder, $filename, 'public');
 
-            return url('/') . "/storage/{$path}";
+            return "/storage/{$path}";
         }
         return '';
+    }
+
+    protected function deleteFile($path): bool
+    {
+        $path = substr($path, 8, null);
+        if (Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+            return true;
+        } return false;
     }
 }

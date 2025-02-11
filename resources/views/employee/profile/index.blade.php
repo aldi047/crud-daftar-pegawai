@@ -22,7 +22,13 @@
         </div>
         <div class="form-group">
             <label class="font-weight-bold">Photo</label>
-            <img src="{{ asset(Auth::user()->photo_path) }}" class="rounded" style="width: 200px">
+            <img
+            @if (Auth::user()->photo_path)
+                src="{{ url('/') .Auth::user()->photo_path }}"
+            @else
+                src="{{ asset('image/blank_profile.jpg') }}"
+            @endif
+            class="rounded" style="width: 200px">
         </div>
         <a href="{{ route('profiles.edit', Auth::user()->id) }}" class="mb-3 mx-3">
             <button type="button" class="btn btn-outline-primary btn-block font-weight-bolder">Edit Profil</button>

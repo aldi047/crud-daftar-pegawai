@@ -15,7 +15,6 @@ Route::get('/register', [HomeController::class, 'register']);
 
 Route::get('/profile', [HomeController::class, 'profile']);
 Route::get('/profile/edit/{id}', [HomeController::class, 'edit'])->name('profiles.edit');
-Route::get('profile/update/{id}', [HomeController::class, 'update'])->name('profiles.update');
 
 
 Route::post('/login', [AuthController::class, 'login']);

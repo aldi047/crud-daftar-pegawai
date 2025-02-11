@@ -60,30 +60,27 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'photo' => 'nullable'
-        ]);
-        if ($validator->fails()) return back()->withErrors($validator->errors());
-
-        $data = $request->all();
-        if ($request->hasFile('photo')){
-            $path = $this->processFileName($request->photo);
-            $data['photo_path'] = $path;
-        }
-
-
-        $user = User::create($data);
-
-        Auth::loginUsingId($user->id);
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-        return view('token.save', compact('token'));
         try{
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+                'photo' => 'nullable'
+            ]);
+            if ($validator->fails()) return back()->withErrors($validator->errors());
 
+            $data = $request->all();
+            if ($request->hasFile('photo')){
+                $path = $this->uploadFile($request->photo);
+                $data['photo_path'] = $path;
+            }
 
+            $user = User::create($data);
+
+            Auth::loginUsingId($user->id);
+
+            $token = $user->createToken('auth_token')->plainTextToken;
+            return view('token.save', compact('token'));
         } catch(\Exception $exception){
             return back()->with('error', $exception->getMessage());
         }

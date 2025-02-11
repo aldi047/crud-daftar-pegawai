@@ -1,9 +1,6 @@
 @extends('adminlte::page')
 
 @section('title', 'Dashboard')
-@section('content_header')
-    <h1>Employee Profile</h1>
-@stop
 
 @section('content')
 <div class="card mt-3">
@@ -13,10 +10,9 @@
         </div>
     </div>
     <div class="card-body pb-0 px-3">
-        <form action="{{ route('profiles.update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
-            <div class="card-body pb-0 px-0">
+        <form id="update_user">
+            <div class="card-body p-0">
                 @csrf
-                @method('PUT')
                 <div class="form-group">
                     <label class="font-weight-bold">Name</label>
                     <input type="text" class="form-control"
@@ -42,51 +38,55 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold">Nomor HP Dokter</label>
-                    <input type="text" class="form-control"
-                        name="no_hp" value="{{ Auth::user()->name }}" disabled>
+                    <label class="font-weight-bold">Photo</label>
+                    <input type="file" class="form-control p-1" name="photo">
 
-                    <!-- error message untuk no_hp -->
-                    @error('no_hp')
+                    <!-- error message photo -->
+                    @error('photo')
                         <div class="alert alert-danger mt-2">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-            <label class="font-weight-bold">Nomor HP Dokter</label>
-            <input type="text" class="form-control"
-                name="no_hp" value="{{ Auth::user()->name }}" disabled>
-
-            <!-- error message untuk no_hp -->
-            @error('no_hp')
-                <div class="alert alert-danger mt-2">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-                </div>
             </div>
             <button type="submit" class="btn btn-outline-success btn-block font-weight-bolder mb-3">Simpan Perubahan</button>
         </form>
     </div>
-    <button class="btn btn-outline-primary btn-block font-weight-bolder" onclick="enableInput()">Edit</button>
-
-    {{-- <a href="{{ route('profiles.edit', Auth::user()->id) }}" class="mb-3 mx-3">
-        <button type="button" class="btn btn-outline-primary btn-block font-weight-bolder">Edit Profil</button>
-    </a> --}}
 </div>
 @stop
 
 @section('adminlte_js')
+    <script src="{{ asset('js/axios.min.js') }}"></script>
     <script>
-        function enableInput() {
-        var input = document.getElementById("name");
-        var select = document.getElementById("select");
-        if(input && input.value){
-        select.disabled = true;
-        } else {
-        select.disabled = false;
-        }
-    }
+        $(document).ready(function(){
+            const form = document.getElementById('update_user');
+            var user_id = {{ Auth::user()->id }};
+            var token = localStorage.getItem("crud_employee_token");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                var formData = new FormData(form);
+
+                axios({
+                    method: "post",
+                    url: location.origin
+                        + "/api/profile/edit/"
+                        + user_id,
+                    data: formData,
+                    headers: {
+                        'Authorization': token,
+                        'Content-Type': 'multipart/form-data'
+                        },
+                    params: {
+                        _method:'PUT'
+                    }
+                }).then((res) => {
+                    if (res.data.success){
+                        window.location.href = "/profile"
+                    }
+                })
+                .catch(err => console.log(err));
+            })
+        });
     </script>
 @stop
