@@ -42,14 +42,13 @@ class Controller extends BaseController
 
             $path = $file->storeAs($folder, $filename, 'public');
 
-            return "/storage/{$path}";
+            return $path;
         }
         return '';
     }
 
     protected function deleteFile($path): bool
     {
-        $path = substr($path, 8, null);
         if (Storage::disk('public')->exists($path)) {
             Storage::disk('public')->delete($path);
             return true;

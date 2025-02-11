@@ -24,7 +24,7 @@
             <label class="font-weight-bold">Photo</label>
             <img
             @if (Auth::user()->photo_path)
-                src="{{ url('/') .Auth::user()->photo_path }}"
+                src="{{ url('/storage') . '/' .Auth::user()->photo_path }}"
             @else
                 src="{{ asset('image/blank_profile.jpg') }}"
             @endif
