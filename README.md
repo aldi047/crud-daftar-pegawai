@@ -7,12 +7,11 @@ https://www.w3schools.com/JQuery/exercise_jq.asp?filename=exercise_jq_selectors1
 
 
 =====================================================
-Admin dan User Bisa Hapus Data User
-Data yang Enum pakai dropdown
+
 -Halaman Home bisa preview, cetak dan search, filter
 -Halaman Home berisi data seperti di soal
 -Halaman Admin Bisa Filter data
--Add Middleware View saja
+-Dikasi validasi untuk nip_18, npwp_16, phone_number_12_unique
 -Add API personalBiodata di postman
 =====================================================
 

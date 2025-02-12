@@ -7,36 +7,12 @@ use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class EmployeeController extends Controller
 {
-    public function getAllEmployees(Request $request):JsonResponse
-    {
-        try{
-            $data = EmployeeDetail::all();
-
-            if ($data) {
-                return $this->returnJson(
-                    $data,
-                    message: 'Berhasil Mengambil Data Pegawai'
-                );
-            } else {
-                return $this->returnJson(
-                    null,
-                    code: 404,
-                    message: 'Data Pegawai Tidak Ditemukan'
-                );
-            }
-        } catch(\Exception $exception){
-            return $this->returnJson(
-                code: 500,
-                message: 'Gagal Mengambil Data Pegawai: ' . $exception->getMessage()
-            );
-        }
-    }
-
     public function detail(Request $request, $id): JsonResponse
     {
         try{
@@ -126,6 +102,25 @@ class EmployeeController extends Controller
             return $this->returnJson(
                 null, 500,
                 'Gagal melakukan update data Detail Pegawai! ' . $exception->getMessage()
+            );
+        }
+    }
+
+    public function getDepartments(Request $request):JsonResponse
+    {
+        try {
+            $data = DB::table('employee_details')
+                    ->select('department')
+                    ->distinct()
+                    ->pluck('department');
+            return $this->returnJson(
+                content: $data,
+                message: 'Berhasil mengambil daftar Unit Kerja'
+            );
+        } catch (\Exception $exception){
+            return $this->returnJson(
+                null, 500,
+                'Gagal mengambil daftar Unit Kerja! ' . $exception->getMessage()
             );
         }
     }

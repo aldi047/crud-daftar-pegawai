@@ -5,12 +5,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', [HomeController::class, 'login'])->name('welcome');
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+
 Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/login', [HomeController::class, 'login']);
-Route::get('/register', [HomeController::class, 'register']);
-Route::get('/redirectWith', [HomeController::class, 'redirectWith']);
 
 Route::get('/profile', [HomeController::class, 'profile'])->name('profiles');
 Route::get('/profile/edit/{id}', [HomeController::class, 'editProfile'])->name('profiles.edit');
@@ -24,6 +20,14 @@ Route::get('/biodata/create', [HomeController::class, 'addBio'])->name('biodatas
 Route::get('/biodata/edit/{id}', [HomeController::class, 'editBio'])->name('biodatas.edit');
 
 
+Route::get('/dashboard', [HomeController::class, 'dashboard'])
+    ->middleware('admin.only')->name('dashboard');
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/', [HomeController::class, 'login'])->name('welcome');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/login', [HomeController::class, 'login']);
+Route::get('/register', [HomeController::class, 'register']);
+Route::get('/redirectWith', [HomeController::class, 'redirectWith']);
