@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('photo_path')->nullable();
             $table->enum('user_type', ['admin', 'employee'])->default('employee');
+            $table->softDeletes();
         });
     }
 

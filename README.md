@@ -12,6 +12,8 @@ Data yang Enum pakai dropdown
 -Halaman Home bisa preview, cetak dan search, filter
 -Halaman Home berisi data seperti di soal
 -Halaman Admin Bisa Filter data
+-Add Middleware View saja
+-Add API personalBiodata di postman
 =====================================================
 
 Tugas kedua pakai ipynb atau aplikasi dengan UI

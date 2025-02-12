@@ -22,9 +22,14 @@
                 id="group" disabled>
         </div>
         <div class="form-group">
-            <label class="font-weight-bold">Eselon</label>
-            <input type="text" class="form-control"
-                id="echelon" disabled>
+            <label class="font-weight-bold" >Eselon</label><br>
+            <select class="selectpicker" id="echelon" disabled>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+            </select>
         </div>
         <div class="form-group">
             <label class="font-weight-bold">Jabatan</label>
@@ -74,7 +79,7 @@
                     if (res.data.success){
                         $("#nip").val(res.data.content.nip)
                         $("#group").val(res.data.content.group)
-                        $("#echelon").val(res.data.content.echelon)
+                        $("#echelon").val(res.data.content.echelon).change()
                         $("#position").val(res.data.content.position)
                         $("#office_location").val(res.data.content.office_location)
                         $("#department").val(res.data.content.department)

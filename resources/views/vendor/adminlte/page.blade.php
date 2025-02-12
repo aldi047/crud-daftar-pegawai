@@ -10,6 +10,7 @@
 @section('adminlte_css')
 <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/bootstrap-select.min.css')}}">
     @stack('css')
     @yield('css')
 @stop
@@ -61,6 +62,7 @@
 @section('adminlte_js')
     <script src="{{asset('js/toastr.min.js')}}"></script>
     <script src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
     <script>
         $(document).ready(function() {
             toastr.options.timeOut = 4000;

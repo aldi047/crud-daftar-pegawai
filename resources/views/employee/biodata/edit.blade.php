@@ -15,8 +15,8 @@
                 @csrf
                 <div class="form-group">
                     <label class="font-weight-bold">NPWP</label>
-                    <input type="text" class="form-control" id="npwp"
-                    name="npwp" value="{{ old('npwp', '') }}">
+                    <input type="text" class="form-control"
+                    id="npwp" name="npwp" >
 
                     <!-- error message npwp-->
                     @error('npwp')
@@ -27,8 +27,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Tempat Lahir</label>
-                    <input type="text" class="form-control" id="birth_place"
-                    name="birth_place" value="{{ old('birth_place', '') }}">
+                    <input type="text" class="form-control"
+                    id="birth_place" name="birth_place">
 
                     <!-- error message birth_place-->
                     @error('birth_place')
@@ -39,8 +39,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Tahun Lahir</label>
-                    <input type="text" class="form-control datepicker" id="birth_date"
-                    name="birth_date" value="{{ old('birth_date', '') }}">
+                    <input type="text" class="form-control datepicker"
+                    id="birth_date" name="birth_date">
 
                     <!-- error message birth_date-->
                     @error('birth_date')
@@ -51,8 +51,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Alamat</label>
-                    <input type="text" class="form-control" id="address"
-                    name="address" value="{{ old('address', '') }}">
+                    <input type="text" class="form-control"
+                    id="address" name="address">
 
                     <!-- error message address-->
                     @error('address')
@@ -83,8 +83,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Nomor Telepon</label>
-                    <input type="text" class="form-control" id="phone_number"
-                    name="phone_number" value="{{ old('phone_number', '') }}">
+                    <input type="text" class="form-control"
+                    id="phone_number" name="phone_number">
 
                     <!-- error message phone_number-->
                     @error('phone_number')
@@ -95,8 +95,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Agama</label>
-                    <input type="text" class="form-control" id="religion"
-                    name="religion" value="{{ old('religion', '') }}">
+                    <input type="text" class="form-control"
+                    id="religion" name="religion" >
 
                     <!-- error message religion-->
                     @error('religion')

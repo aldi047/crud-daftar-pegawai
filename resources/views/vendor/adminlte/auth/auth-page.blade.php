@@ -17,6 +17,7 @@
 @endphp
 
 @section('adminlte_css')
+    <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
     @stack('css')
     @yield('css')
 @stop
@@ -84,6 +85,19 @@
 @stop
 
 @section('adminlte_js')
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            toastr.options.timeOut = 4000;
+            @if (session()->has('success'))
+                toastr.success("{{ Session::get('success') }}", 'BERHASIL');
+            @elseif (session()->has('info'))
+                toastr.info("{{ Session::get('info') }}", 'INFORMASI');
+            @elseif (session()->has('error'))
+                toastr.error("{{ Session::get('error') }}", 'GAGAL');
+            @endif
+        });
+    </script>
     @stack('js')
     @yield('js')
 @stop

@@ -62,7 +62,7 @@
                 Anda belum mengisi data personal biodata
             </div>
             <a href="{{ route('biodatas.add') }}" class="mb-3 mx-3">
-                <button type="button" class="btn btn-outline-primary btn-block font-weight-bolder">Tambah Detail</button>
+                <button type="button" class="btn btn-outline-primary btn-block font-weight-bolder">Tambah Biodata</button>
             </a>
         @endif
     </div>

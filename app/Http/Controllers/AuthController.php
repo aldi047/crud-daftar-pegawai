@@ -17,15 +17,16 @@ class AuthController extends Controller
                 'email' => 'required',
                 'password' => 'required',
             ]);
-            if ($validator->fails()) return back()->withErrors($validator->errors());
+            if ($validator->fails()) return back()->with('error', $validator->errors());
 
             if (!Auth::attempt($request->only('email', 'password'))) {
                 return back()->with('error', 'Email atau kata sandi salah');
             }
             $user = User::where('email', $request['email'])->firstOrFail();
+            $user_type = $user->user_type;
 
             $token = $user->createToken('auth_token')->plainTextToken;
-            return view('token.save', compact('token'));
+            return view('token.save', compact('token', 'user_type'));
 
         } catch(\Exception $exception){
             return back()->with('error', $exception->getMessage());
@@ -65,11 +66,23 @@ class AuthController extends Controller
                 'name' => 'required',
                 'email' => 'required',
                 'password' => 'required',
-                'photo' => 'nullable'
+                'photo' => 'image'
             ]);
-            if ($validator->fails()) return back()->withErrors($validator->errors());
 
             $data = $request->all();
+
+            if ($validator->fails()) {
+
+                $array = (array) $data;
+                unset($array['photo']);
+                unset($array['password']);
+                unset($array['_token']);
+                return back()->with(array_merge(
+                ['error' => $validator->errors()],
+                $array
+            ));
+            }
+
             if ($request->hasFile('photo')){
                 $path = $this->uploadFile($request->photo);
                 $data['photo_path'] = $path;

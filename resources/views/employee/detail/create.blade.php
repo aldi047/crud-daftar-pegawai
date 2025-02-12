@@ -37,10 +37,16 @@
                         </div>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label class="font-weight-bold">Eselon</label>
-                    <input type="text" class="form-control" id="echelon"
-                    name="echelon">
+                <div>
+                    <label class="font-weight-bold" >Eselon</label><br>
+                    <select class="selectpicker" id="echelon" name="echelon">
+                        <option value="" disabled selected>Pilih Eselon</option>
+                        <option value="I">I</option>
+                        <option value="II">II</option>
+                        <option value="III">III</option>
+                        <option value="IV">IV</option>
+                        <option value="V">V</option>
+                    </select>
 
                     <!-- error message echelon-->
                     @error('echelon')

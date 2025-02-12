@@ -4,17 +4,15 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+Route::get('/', [HomeController::class, 'login'])->name('welcome');
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/login', [HomeController::class, 'login']);
 Route::get('/register', [HomeController::class, 'register']);
 Route::get('/redirectWith', [HomeController::class, 'redirectWith']);
 
-Route::get('/profile', [HomeController::class, 'profile']);
+Route::get('/profile', [HomeController::class, 'profile'])->name('profiles');
 Route::get('/profile/edit/{id}', [HomeController::class, 'editProfile'])->name('profiles.edit');
 
 Route::get('/detail', [HomeController::class, 'detail'])->name('details');

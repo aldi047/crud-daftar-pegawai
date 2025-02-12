@@ -19,7 +19,8 @@ Route::middleware('auth:sanctum')->group(static function () {
 
     Route::get('/files', [HomeController::class, 'getFile'])->name('getFile');
 
-    Route::match(['put', 'patch'], 'profile/edit/{id}', [UserController::class, 'update']);
+    Route::match(['put', 'patch'], 'profile/{id}/edit', [UserController::class, 'update']);
+    Route::delete('profile/{id}/delete', [UserController::class, 'deleteProfile']);
 
     Route::get('/employees', [EmployeeController::class, 'getAllEmployees']);
     Route::get('/employee/{id}', [EmployeeController::class, 'detail']);

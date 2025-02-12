@@ -55,7 +55,7 @@
 </div>
 @stop
 
-@section('adminlte_js')
+@section('js')
     <script src="{{ asset('js/axios.min.js') }}"></script>
     <script>
         $(document).ready(function(){
@@ -70,8 +70,9 @@
                 axios({
                     method: "post",
                     url: location.origin
-                        + "/api/profile/edit/"
-                        + user_id,
+                        + "/api/profile/"
+                        + user_id
+                        + "/edit",
                     data: formData,
                     headers: {
                         'Authorization': token,
@@ -82,10 +83,15 @@
                     }
                 }).then((res) => {
                     if (res.data.success){
-                        window.location.href = "/profile"
+                        let msg = res.data.message;
+                        window.location.href = "/redirectWith?route=profiles&msg=" + msg;
                     }
                 })
-                .catch(err => console.log(err));
+                .catch((err) => {
+                    console.log(err);
+                    let detail_message = JSON.stringify(err.response.data.content);
+                    toastr.error(detail_message, err.response.data.message);
+                });
             })
         });
     </script>

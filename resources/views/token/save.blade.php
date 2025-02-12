@@ -2,9 +2,14 @@
     if (typeof(Storage) !== "undefined") {
         var prefix = "Bearer ";
         var token = @json($token);
+        var user_type = @json($user_type);
         localStorage.setItem("crud_employee_token", prefix.concat(token));
-        window.location.href = "/dashboard"
+        if (user_type == 'admin'){
+            window.location.href = "/dashboard"
+        } else {
+            window.location.href = "/profile"
+        }
     } else {
-        window.location.href = "/dashboard"
+        window.location.href = "/"
     }
 </script>

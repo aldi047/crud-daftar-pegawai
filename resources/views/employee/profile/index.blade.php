@@ -33,6 +33,37 @@
         <a href="{{ route('profiles.edit', Auth::user()->id) }}" class="mb-3 mx-3">
             <button type="button" class="btn btn-outline-primary btn-block font-weight-bolder">Edit Profil</button>
         </a>
+        <button onclick="deleteProfile()" class="btn btn-outline-danger btn-block font-weight-bolder mb-3" >Delete Profile</button>
     </div>
 </div>
+@stop
+
+@section('js')
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script>
+        var user_id = {{ Auth::user()->id }};
+        var token = localStorage.getItem("crud_employee_token");
+        function deleteProfile(){
+            axios({
+                method: "delete",
+                url: location.origin
+                    + "/api/profile/"
+                    + user_id
+                    + "/delete",
+                headers: {
+                    'Authorization': token,
+                    },
+            }).then((res) => {
+                if (res.data.success){
+                    let msg = res.data.message;
+                    window.location.href = "/redirectWith?route=welcome&msg=" + msg;
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+                let detail_message = JSON.stringify(err.response.data.content);
+                toastr.error(detail_message, err.response.data.message);
+            });
+        }
+    </script>
 @stop

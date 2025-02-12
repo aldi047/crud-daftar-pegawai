@@ -15,8 +15,8 @@
                 @csrf
                 <div class="form-group">
                     <label class="font-weight-bold">NIP</label>
-                    <input type="text" class="form-control" id="nip"
-                    name="nip" value="{{ old('nip', '') }}">
+                    <input type="text" class="form-control"
+                    id="nip" name="nip">
 
                     <!-- error message nip-->
                     @error('nip')
@@ -27,8 +27,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Golongan</label>
-                    <input type="text" class="form-control" id="group"
-                    name="group" value="{{ old('group', '') }}">
+                    <input type="text" class="form-control"
+                    id="group" name="group" >
 
                     <!-- error message group-->
                     @error('group')
@@ -38,9 +38,17 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label class="font-weight-bold">Eselon</label>
-                    <input type="text" class="form-control" id="echelon"
-                    name="echelon" value="{{ old('echelon', '') }}">
+                    <div class="form-group">
+                        <label class="font-weight-bold" >Eselon</label><br>
+                        <select class="selectpicker" id="echelon"
+                            name="echelon">
+                            <option value="I">I</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                            <option value="V">V</option>
+                        </select>
+                    </div>
 
                     <!-- error message echelon-->
                     @error('echelon')
@@ -51,8 +59,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Jabatan</label>
-                    <input type="text" class="form-control" id="position"
-                    name="position" value="{{ old('position', '') }}">
+                    <input type="text" class="form-control"
+                    id="position" name="position">
 
                     <!-- error message position-->
                     @error('position')
@@ -63,8 +71,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Tempat Tugas</label>
-                    <input type="text" class="form-control" id="office_location"
-                    name="office_location" value="{{ old('office_location', '') }}">
+                    <input type="text" class="form-control"
+                    id="office_location" name="office_location" >
 
                     <!-- error message office_location-->
                     @error('office_location')
@@ -75,8 +83,8 @@
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">Unit Kerja</label>
-                    <input type="text" class="form-control" id="department"
-                    name="department" value="{{ old('department', '') }}">
+                    <input type="text" class="form-control"
+                    id="department" name="department" >
 
                     <!-- error message department-->
                     @error('department')
@@ -113,7 +121,7 @@
                     employeeDetailId = res.data.content.id;
                     $("#nip").val(res.data.content.nip);
                     $("#group").val(res.data.content.group);
-                    $("#echelon").val(res.data.content.echelon);
+                    $("#echelon").val(res.data.content.echelon).change();
                     $("#position").val(res.data.content.position);
                     $("#office_location").val(res.data.content.office_location);
                     $("#department").val(res.data.content.department);
