@@ -120,12 +120,12 @@ class EmployeeController extends Controller
             $emplyeeDetail->update($request->all());
 
             return $this->returnJson(
-                message: 'Berhasil mengedit profil!'
+                message: 'Berhasil mengedit Detail Pegawai!'
             );
         } catch (\Exception $exception){
             return $this->returnJson(
                 null, 500,
-                'Gagal melakukan update data user! ' . $exception->getMessage()
+                'Gagal melakukan update data Detail Pegawai! ' . $exception->getMessage()
             );
         }
     }

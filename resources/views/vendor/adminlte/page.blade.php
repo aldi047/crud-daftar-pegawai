@@ -3,8 +3,13 @@
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
 @inject('preloaderHelper', 'JeroenNoten\LaravelAdminLte\Helpers\PreloaderHelper')
 
+@section('adminlte_css_pre')
+    <link rel="stylesheet" href="{{ asset('vendor/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+@stop
+
 @section('adminlte_css')
 <link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/bootstrap-datepicker.min.css')}}">
     @stack('css')
     @yield('css')
 @stop
@@ -54,7 +59,8 @@
 @stop
 
 @section('adminlte_js')
-<script src="{{asset('js/toastr.min.js')}}"></script>
+    <script src="{{asset('js/toastr.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap-datepicker.min.js')}}"></script>
     <script>
         $(document).ready(function() {
             toastr.options.timeOut = 4000;

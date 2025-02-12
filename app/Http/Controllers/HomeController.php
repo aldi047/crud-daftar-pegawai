@@ -56,6 +56,22 @@ class HomeController extends Controller
         return view('employee.detail.edit');
     }
 
+    public function detailBio()
+    {
+        $hasBio = Auth::user()->personalBiodata ?? null;
+        return view('employee.biodata.index', compact('hasBio'));
+    }
+
+    public function addBio()
+    {
+        return view('employee.biodata.create');
+    }
+
+    public function editBio()
+    {
+        return view('employee.biodata.edit');
+    }
+
     public function getFile(Request $request) {
         $fullPath = $request->get('path');
 

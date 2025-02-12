@@ -21,6 +21,10 @@ Route::get('/detail', [HomeController::class, 'detail'])->name('details');
 Route::get('/detail/create', [HomeController::class, 'addDetail'])->name('details.add');
 Route::get('/detail/edit/{id}', [HomeController::class, 'editDetail'])->name('details.edit');
 
+Route::get('/biodata', [HomeController::class, 'detailBio'])->name('biodatas');
+Route::get('/biodata/create', [HomeController::class, 'addBio'])->name('biodatas.add');
+Route::get('/biodata/edit/{id}', [HomeController::class, 'editBio'])->name('biodatas.edit');
+
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);

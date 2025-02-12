@@ -3,19 +3,19 @@ https://jeroennoten.github.io/Laravel-AdminLTE/
 https://bantikyan.github.io/icheck-bootstrap/
 https://stackoverflow.com/questions/10520899/form-action-with-javascript
 https://www.youtube.com/watch?v=r7r45An_Lkc
+https://www.w3schools.com/JQuery/exercise_jq.asp?filename=exercise_jq_selectors1
 
-User show index dan edit diganti pake axios
-dan di api update user masih ada $user = Auth::user();
 
-Halaman Employee
-Hanya ada 1 tab saja dengan isi:
-Home dikasi middleware => isi data personal > data detail pekerjaan > data join 2 tabel
-Ketika sudah semua dikasi data lengakap dan dijoin
+=====================================================
+Admin dan User Bisa Hapus Data User
+Data yang Enum pakai dropdown
+-Halaman Home bisa preview, cetak dan search, filter
+-Halaman Home berisi data seperti di soal
+-Halaman Admin Bisa Filter data
+=====================================================
 
-Halaman Admin
-Home, CRUD personal biodata, CRUD detail employee
-Halaman Home bisa preview, cetak dan search, filter
-Halaman Home berisi data seperti di soal
+Tugas kedua pakai ipynb atau aplikasi dengan UI
+
 
 midddleware login user_type
 
