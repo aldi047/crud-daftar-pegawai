@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -123,5 +124,61 @@ class UserController extends Controller
         $datas = $perPage ? $res->paginate($perPage) : $res->get();
 
         return view('dashboard', compact('datas', 'departments', 'perPage'));
+    }
+
+    public function printToPDF(Request $request)
+    {
+        $cols= [
+            'employee_details.nip',
+            'users.name',
+            'personal_biodatas.birth_place',
+            'personal_biodatas.address',
+            'personal_biodatas.birth_date',
+            'personal_biodatas.gender',
+            'employee_details.group',
+            'employee_details.echelon',
+            'employee_details.position',
+            'employee_details.office_location',
+            'personal_biodatas.religion',
+            'employee_details.department',
+            'personal_biodatas.phone_number',
+            'personal_biodatas.npwp'
+        ];
+
+        $datas = DB::table('users')
+            ->join('employee_details', 'users.id', '=', 'employee_details.user_id')
+            ->join('personal_biodatas', 'users.id', '=', 'personal_biodatas.user_id')
+            ->select($cols)->get()->toArray();
+
+        $pdf = Pdf::loadView('data_print', ['datas' => $datas]);
+
+        return $pdf->download('employee.pdf');
+    }
+
+    public function pdf(Request $request)
+    {
+        $cols= [
+            'employee_details.nip',
+            'users.name',
+            'personal_biodatas.birth_place',
+            'personal_biodatas.address',
+            'personal_biodatas.birth_date',
+            'personal_biodatas.gender',
+            'employee_details.group',
+            'employee_details.echelon',
+            'employee_details.position',
+            'employee_details.office_location',
+            'personal_biodatas.religion',
+            'employee_details.department',
+            'personal_biodatas.phone_number',
+            'personal_biodatas.npwp'
+        ];
+
+        $datas = DB::table('users')
+            ->join('employee_details', 'users.id', '=', 'employee_details.user_id')
+            ->join('personal_biodatas', 'users.id', '=', 'personal_biodatas.user_id')
+            ->select($cols)->get()->toArray();
+
+        return view('data_print', compact('datas'));
     }
 }

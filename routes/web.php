@@ -24,7 +24,9 @@ Route::get('/biodata/edit/{id}', [HomeController::class, 'editBio'])->name('biod
 
 Route::middleware('admin.only')->group(static function(){
     Route::get('/dashboard', [UserController::class, 'getAllData'])->name('dashboard');
+    Route::get('/printToPDF', [UserController::class, 'printToPDF'])->name('print.pdf');
 });
+Route::get('/pdf', [UserController::class, 'pdf']);
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
