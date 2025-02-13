@@ -103,6 +103,10 @@ class BiodataController extends Controller
             if ($validator->fails()) return $this->validationFail($validator);
 
             $personalBiodata = PersonalBiodata::findOrFail($id);
+
+            $data = $request->all();
+            $data['birth_date'] = $this->stringToDbDate($data['birth_date']);
+
             $personalBiodata->update($request->all());
 
             return $this->returnJson(

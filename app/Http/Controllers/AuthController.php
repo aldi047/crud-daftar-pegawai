@@ -93,7 +93,8 @@ class AuthController extends Controller
             Auth::loginUsingId($user->id);
 
             $token = $user->createToken('auth_token')->plainTextToken;
-            return view('token.save', compact('token'));
+            $user_type = $user->user_type;
+            return view('token.save', compact('token', 'user_type'));
         } catch(\Exception $exception){
             return back()->with('error', $exception->getMessage());
         }

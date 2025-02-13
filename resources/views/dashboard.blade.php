@@ -9,7 +9,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-    <a class="btn btn-primary btn-sm"
+    <a class="btn btn-primary"
         href={{ route('print.pdf') }}>
         <i class="nav-icon fa fa-print"> Print</i>
     </a>

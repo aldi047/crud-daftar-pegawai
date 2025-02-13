@@ -111,6 +111,7 @@ class UserController extends Controller
             ->pluck('department');
 
         $res = DB::table('users')
+            ->whereNull('deleted_at')
             ->join('employee_details', 'users.id', '=', 'employee_details.user_id')
             ->join('personal_biodatas', 'users.id', '=', 'personal_biodatas.user_id')
             ->select($cols)
@@ -146,6 +147,7 @@ class UserController extends Controller
         ];
 
         $datas = DB::table('users')
+            ->whereNull('deleted_at')
             ->join('employee_details', 'users.id', '=', 'employee_details.user_id')
             ->join('personal_biodatas', 'users.id', '=', 'personal_biodatas.user_id')
             ->select($cols)->get()->toArray();
@@ -175,6 +177,7 @@ class UserController extends Controller
         ];
 
         $datas = DB::table('users')
+            ->whereNull('deleted_at')
             ->join('employee_details', 'users.id', '=', 'employee_details.user_id')
             ->join('personal_biodatas', 'users.id', '=', 'personal_biodatas.user_id')
             ->select($cols)->get()->toArray();
