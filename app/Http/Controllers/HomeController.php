@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
-
     public function home()
     {
         return view('home');

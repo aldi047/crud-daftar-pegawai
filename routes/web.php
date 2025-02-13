@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -20,8 +22,9 @@ Route::get('/biodata/create', [HomeController::class, 'addBio'])->name('biodatas
 Route::get('/biodata/edit/{id}', [HomeController::class, 'editBio'])->name('biodatas.edit');
 
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])
-    ->middleware('admin.only')->name('dashboard');
+Route::middleware('admin.only')->group(static function(){
+    Route::get('/dashboard', [UserController::class, 'getAllData'])->name('dashboard');
+});
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 

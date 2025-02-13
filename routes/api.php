@@ -32,7 +32,5 @@ Route::middleware('auth:sanctum')->group(static function () {
     Route::match(['post', 'put'], '/biodata/{id}/edit', [BiodataController::class, 'updatePersonalBiodata']);
     Route::delete('/biodata', [BiodataController::class, 'delete']);
 
-    Route::get('/getAllEmployee', [UserController::class, 'getAllData']);
     Route::get('/getAllDepartment', [EmployeeController::class, 'getDepartments']);
-
 });
